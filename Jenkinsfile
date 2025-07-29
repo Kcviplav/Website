@@ -21,7 +21,7 @@ pipeline{
                 echo 'Running Docker Container...'
                 sh '''
                 docker rm -f my-website-container || true
-                docker run -d -p 8080:80 --name my-website-container my-website-image 
+                docker run -d -p 9090:80 --name my-website-container my-website-image 
                 '''
             }
         }
