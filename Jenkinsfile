@@ -1,7 +1,7 @@
 pipeline{
     agent any 
     environment {
-        slack_webhook = 'https://hooks.slack.com/services/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' //WEBHOOK URL
+        slack_webhook = 'https://hooks.slack.com/services/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' //WEBHOOK URL
     }
 
     stages{
