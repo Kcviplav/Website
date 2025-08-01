@@ -32,19 +32,21 @@ pipeline{
 
     post {
         success {
-            slackSend(
-                channel: '#all-kc',
-                message: '✅ Build succeeded!',
-                tokenCredentialId: 'slack-webhook-2'
-            )
+            script {
+                httpRequest httpMode: 'POST',
+                    url: "${env.slack_webhook}",
+                    contentType: 'APPLICATION_JSON',
+                    requestBody: '{"text": "✅ Build succeeded! Your website is live."}'
+            }
         }
 
         failure {
-            slackSend(
-                channel: '#all-kc',
-                message: '❌ Build failed!',
-                tokenCredentialId: 'slack-webhook-2'
-            )
+            script {
+                httpRequest httpMode: 'POST',
+                    url: "${env.slack_webhook}",
+                    contentType: 'APPLICATION_JSON',
+                    requestBody: '{"text": "❌ Build failed! Check Jenkins for details."}'
+            }
         }
     }
 }
