@@ -1,7 +1,7 @@
 pipeline{
     agent any 
     // environment {
-    //     slack_webhook = 'https://hooks.slack.com/services/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' //WEBHOOK URL
+    //     slack_webhook = 'https://hooks.slack.com/services/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' //WEBHOOK URL
     // }
 
     stages{
@@ -44,24 +44,24 @@ pipeline{
         }
     }
 
-    // post {
-    //     success {
-    //         script {
-    //             httpRequest httpMode: 'POST',
-    //                 url: "${env.slack_webhook}",
-    //                 contentType: 'APPLICATION_JSON',
-    //                 requestBody: '{"text": "✅ Build succeeded! Your website is live."}'
-    //         }
-    //     }
+    post {
+        success {
+            script {
+                httpRequest httpMode: 'POST',
+                    url: "${env.slack_webhook}",
+                    contentType: 'APPLICATION_JSON',
+                    requestBody: '{"text": "✅ Build succeeded! Your website is live."}'
+            }
+        }
 
-    //     failure {
-    //         script {
-    //             httpRequest httpMode: 'POST',
-    //                 url: "${env.slack_webhook}",
-    //                 contentType: 'APPLICATION_JSON',
-    //                 requestBody: '{"text": "❌ Build failed! Check Jenkins for details."}'
-    //         }
-    //     }
-    // }
+        failure {
+            script {
+                httpRequest httpMode: 'POST',
+                    url: "${env.slack_webhook}",
+                    contentType: 'APPLICATION_JSON',
+                    requestBody: '{"text": "❌ Build failed! Check Jenkins for details."}'
+            }
+        }
+    }
 }
 
