@@ -32,11 +32,19 @@ pipeline{
 
     post {
         success {
-            slackSend(channel: '#all-kc', message: '✅ Build Success!')
+            slackSend(
+                channel: '#all-kc',
+                message: '✅ Build succeeded!',
+                tokenCredentialId: 'slack-webhook-2'
+            )
         }
 
         failure {
-            slackSend(channel: '#all-kc', message: '❌ Build Failed!')
+            slackSend(
+                channel: '#all-kc',
+                message: '❌ Build failed!',
+                tokenCredentialId: 'slack-webhook-2'
+            )
         }
     }
 }
