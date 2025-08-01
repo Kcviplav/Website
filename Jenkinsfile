@@ -1,8 +1,8 @@
 pipeline{
     agent any 
-    // environment {
-    //     slack_webhook = 'https://hooks.slack.com/services/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' //WEBHOOK URL
-    // }
+    environment {
+        slack_webhook = 'https://hooks.slack.com/services/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' //WEBHOOK URL
+    }
 
     stages{
         stage('Clone Code'){
