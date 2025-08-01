@@ -39,7 +39,7 @@ pipeline{
                 httpRequest httpMode: 'POST',
                             contentType: 'APPLICATION_JSON',
                             requestBody: groovy.json.JsonOutput.toJson(payload),
-                            url: env.slack_webhook
+                            url: environment.slack_webhook
             }
         }
 
@@ -51,7 +51,7 @@ pipeline{
                 httpRequest httpMode: 'POST',
                             contentType: 'APPLICATION_JSON',
                             requestBody: groovy.json.JsonOutput.toJson(payload),
-                            url: env.slack_webhook
+                            url: environment.slack_webhook
             }
         }
     }
