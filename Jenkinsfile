@@ -18,6 +18,20 @@ pipeline{
                 sh 'docker build -t my-website-image .'
             }
         }
+        stage('Approval to Deploy') {
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'DeployApproval', message: 'Approve deployment to LIVE your Hotel website?', parameters: [
+                            [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Tick to approve deployment', name: 'Proceed']
+                        ]
+                    )
+                    if (!userInput) {
+                        error("❌ Deployment aborted by user.")
+                    }
+                }
+            }
+        }
 
         stage('Run Docker Container'){
             steps{
