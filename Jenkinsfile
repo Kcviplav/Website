@@ -32,27 +32,11 @@ pipeline{
 
     post {
         success {
-            script {
-                def payload = [
-                    text: ":white_check_mark: *SUCCESS:* Website deployed successfully on port *9090*."
-                ]
-                httpRequest httpMode: 'POST',
-                            contentType: 'APPLICATION_JSON',
-                            requestBody: groovy.json.JsonOutput.toJson(payload),
-                            url: slack_webhook
-            }
+            slackSend(channel: '#all-kc', message: '✅ Build Success!')
         }
 
         failure {
-            script {
-                def payload = [
-                    text: ":x: *FAILURE:* Website deployment failed. Please check the Jenkins logs for errors."
-                ]
-                httpRequest httpMode: 'POST',
-                            contentType: 'APPLICATION_JSON',
-                            requestBody: groovy.json.JsonOutput.toJson(payload),
-                            url: slack_webhook
-            }
+            slackSend(channel: '#all-kc', message: '❌ Build Failed!')
         }
     }
 }
